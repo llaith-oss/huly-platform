@@ -34,20 +34,19 @@ export function calcSørensenDiceCoefficient (a: string, b: string): number {
  * Perform markdown diff/comparison to understand do we have a major differences.
  */
 export function isMarkdownsEquals (source1: string, source2: string): boolean {
-  const normalizeLineEndings = (str: string): string =>
-    str.replace(/\r?\n/g, '\n');
+  const normalizeLineEndings = (str: string): string => str.replace(/\r?\n/g, '\n');
 
-  const excludeBlankLines = (str: string): string =>
-    str.split('\n')
+  const excludeBlankLines = (str: string): string => str
+      .split('\n')
       .map((it) => it.trimEnd())
-      .filter(it => it.length > 0)
+      .filter((it) => it.length > 0)
       .join('\n')
 
   const norm1 = normalizeLineEndings(source1)
   const lines1 = excludeBlankLines(norm1)
-  
+
   const norm2 = normalizeLineEndings(source2)
   const lines2 = excludeBlankLines(norm2)
-  
+
   return lines1 === lines2
 }
